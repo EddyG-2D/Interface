@@ -25,10 +25,12 @@ data class Post(
     val comments: Comments? = null,
     val reposts: Reposts = Reposts(),
     val copyright: Copyright? = null,
-    val attachments: Array<Attachment> = arrayOf(
+    val attachments: Array<Attachment> = arrayOf (
         PhotoAttachment(Photo()),
         AudioAttachment(Audio()),
-        VideoAttachment(Video())
+        VideoAttachment(Video()),
+        DocAttachment(Doc()),
+        GraffitiAttachment(Graffiti())
     )
 )
 
@@ -108,6 +110,31 @@ data class Audio(
 
 data class AudioAttachment(val audio: Audio) : Attachment {
     override val type = "audio"
+}
+
+data class Doc(
+    val id: Int = 1,
+    val ownerId: Int = 1,
+    val title: String = "text",
+    val size: Int = 1,
+    val url: String = "text",
+    val date: Int = 1,
+    val type: Int = 1
+)
+
+data class DocAttachment(val doc: Doc) : Attachment {
+    override val type = "doc"
+}
+
+data class Graffiti(
+    val id: Int = 1,
+    val ownerId: Int = 1,
+    val photo_130: String = "text",
+    val photo_604: String = "text"
+)
+
+data class GraffitiAttachment(val graffiti: Graffiti) : Attachment {
+    override val type = "graffiti"
 }
 
 object WallService {
